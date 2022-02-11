@@ -1,0 +1,5 @@
+filegroup(
+    name = "web_sources",
+    srcs = glob(["static/**"]),
+    visibility = ["//src/example/web/server:__pkg__"],
+)

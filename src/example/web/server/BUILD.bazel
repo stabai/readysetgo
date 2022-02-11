@@ -1,0 +1,26 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+load("@io_bazel_rules_docker//go:image.bzl", "go_image")
+
+go_binary(
+    name = "server",
+    data = ["//src/example/web:web_sources"],
+    embed = [":server_lib"],
+    importpath = "github.com/stabai/readysetgo/src/example/web/server",
+    visibility = ["//visibility:public"],
+)
+
+go_image(
+    name = "example-go-image",
+    data = ["//src/example/web:web_sources"],
+    embed = [":server_lib"],
+    importpath = "github.com/stabai/readysetgo/src/example/web/server",
+    visibility = ["//visibility:public"],
+)
+
+go_library(
+    name = "server_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/stabai/readysetgo/src/example/web/server",
+    visibility = ["//visibility:private"],
+    deps = ["@com_github_gorilla_mux//:go_default_library"],
+)

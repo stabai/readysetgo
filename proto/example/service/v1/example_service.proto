@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package readysetgo.example.service.v1;
+
+import "google/protobuf/empty.proto";
+import "proto/example/service/example.proto";
+
+service ExampleService {
+  rpc GetExample(GetExampleRequest) returns (GetExampleResponse);
+  rpc SetExample(SetExampleRequest) returns (google.protobuf.Empty);
+}
+
+message GetExampleRequest {
+  string id = 1;
+}
+
+message GetExampleResponse {
+  string id = 1;
+  Example data = 2;
+}
+
+message SetExampleRequest {
+  string id = 1;
+  Example data = 2;
+}
