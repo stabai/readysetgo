@@ -17,12 +17,16 @@ load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_depe
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 load("//tools/bazel/archives:external_go_deps.bzl", "external_go_deps")
 
+# gazelle:repository_macro tools/bazel/archives/external_go_deps.bzl%external_go_deps
+external_go_deps()
+
 external_go_deps()
 
 go_rules_dependencies()
 
 go_register_toolchains(version = "1.17.2")
 
+# gazelle:repo bazel_gazelle - suppress warning because repo is initialized in macro
 gazelle_dependencies()
 ##########################################################
 

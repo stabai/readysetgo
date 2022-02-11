@@ -22,5 +22,5 @@ go_library(
     srcs = ["main.go"],
     importpath = "github.com/stabai/readysetgo/src/example/web/server",
     visibility = ["//visibility:private"],
-    deps = ["@com_github_gorilla_mux//:go_default_library"],
+    deps = ["@com_github_gorilla_mux//:mux"],
 )
