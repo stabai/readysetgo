@@ -6,6 +6,7 @@ import (
 	"log"
 	"net"
 
+	pb "github.com/stabai/readysetgo/proto/example/service/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
@@ -13,6 +14,10 @@ import (
 var (
 	port = flag.Int("port", 50051, "The server port")
 )
+
+type service struct {
+	pb.UnimplementedExampleServiceServer
+}
 
 func main() {
 	flag.Parse()
@@ -38,5 +43,5 @@ func initializeServer() {
 
 func registerGrpcServices(s *grpc.Server) {
 	reflection.Register(s)
-	// pb.RegisterPublicWorkSuggestionServiceServer(s, &service{Db: db})
+	pb.RegisterExampleServiceServer(s, &service{})
 }

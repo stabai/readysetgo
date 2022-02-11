@@ -6,6 +6,7 @@ go_library(
     importpath = "github.com/stabai/readysetgo/src/example/service",
     visibility = ["//visibility:private"],
     deps = [
+        "//proto/example/service/v1:example_service_go_proto",
         "@org_golang_google_grpc//:go_default_library",
         "@org_golang_google_grpc//reflection",
     ],
