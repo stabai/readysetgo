@@ -15,6 +15,12 @@ You need the following tools installed to use this environment:
   ([homebrew](https://formulae.brew.sh/formula/grpc),
   [manual](https://github.com/grpc/grpc/blob/master/doc/command_line_tool.md#code-location))
 
+If you're using MacOS or Linux, you can install these easily using [Homebrew](https://brew.sh/):
+
+```shell
+brew install bazelisk tilt grpc
+```
+
 ## Running the environment with Tilt
 
 Run this and follow terminal instructions to load the Tilt console:
@@ -37,7 +43,6 @@ bazel run src/example/service
 
 ```shell
 grpc_cli call localhost:50051 ExampleService/GetExample "id: 'foo'"
-grpc_cli
-call localhost:50051 ExampleService/SetExample "id: 'foo', data: {text: 'bar'}"
+grpc_cli call localhost:50051 ExampleService/SetExample "id: 'foo', data: {text: 'bar'}"
 grpc_cli call localhost:50051 ExampleService/GetExample "id: 'foo'"
 ```
