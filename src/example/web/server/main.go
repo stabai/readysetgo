@@ -14,7 +14,7 @@ type ExampleRouter struct {
 func NewExampleRouter() *ExampleRouter {
 	r := mux.NewRouter()
 
-	fs := http.FileServer(http.Dir("./static"))
+	fs := http.FileServer(http.Dir("src/example/web/static"))
 	r.PathPrefix("/").Handler(fs)
 
 	return &ExampleRouter{

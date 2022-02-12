@@ -10,7 +10,7 @@ go_binary(
 )
 
 go_image(
-    name = "example-go-image",
+    name = "example-go-web-image",
     data = ["//src/example/web:web_sources"],
     embed = [":server_lib"],
     importpath = "github.com/stabai/readysetgo/src/example/web/server",
@@ -22,5 +22,5 @@ go_library(
     srcs = ["main.go"],
     importpath = "github.com/stabai/readysetgo/src/example/web/server",
     visibility = ["//visibility:private"],
-    deps = ["@com_github_gorilla_mux//:go_default_library"],
+    deps = ["@com_github_gorilla_mux//:mux"],
 )

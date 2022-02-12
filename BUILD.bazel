@@ -4,7 +4,7 @@ package(default_visibility = ["//visibility:public"])
 
 # gazelle:prefix github.com/stabai/readysetgo
 # gazelle:go_naming_convention import
-# gazelle:proto mode file
+# gazelle:proto package
 gazelle(name = "gazelle")
 
 gazelle(

@@ -7,7 +7,7 @@ proto_library(
     name = "example_service_proto",
     srcs = ["example_service.proto"],
     deps = [
-        "//proto/example/service:example_proto",
+        "//proto/example:example_proto",
         "@com_google_protobuf//:empty_proto",
     ],
 )
@@ -18,6 +18,6 @@ go_proto_library(
     importpath = "github.com/stabai/readysetgo/proto/example/service/v1",
     proto = ":example_service_proto",
     deps = [
-        "//proto/example/service:example_go_proto",
+        "//proto/example:example_go_proto",
     ],
 )

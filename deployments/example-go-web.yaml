@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: example-go
+  name: example-go-web
   labels:
-    app: example-go
+    app: example-go-web
 spec:
   selector:
     matchLabels:
-      app: example-go
+      app: example-go-web
   template:
     metadata:
       labels:
-        app: example-go
+        app: example-go-web
     spec:
       containers:
-      - name: example-go
-        image: example-go-image
+      - name: example-go-web
+        image: example-go-web-image
         ports:
         - containerPort: 8000

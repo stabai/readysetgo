@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package readysetgo.example.service;
+package readysetgo.example;
 
 message Example {
   string text = 1;
