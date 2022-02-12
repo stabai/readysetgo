@@ -18,7 +18,7 @@ You need the following tools installed to use this environment:
 If you're using MacOS or Linux, you can install these easily using [Homebrew](https://brew.sh/):
 
 ```shell
-brew install bazelisk tilt grpc
+brew install bazelisk grpc tilt-dev/tap/tilt
 ```
 
 ## Running the environment with Tilt
