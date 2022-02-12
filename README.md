@@ -6,19 +6,19 @@ Starter template for a monorepo for Go microservices using gRPC, Bazel, and Tilt
 
 You need the following tools installed to use this environment:
 
-- [Bazelisk](https://github.com/bazelbuild/bazelisk)
-  ([homebrew](https://formulae.brew.sh/formula/bazelisk),
-  [manual](https://docs.bazel.build/versions/main/install-bazelisk.html))
-- [Tilt](https://tilt.dev) ([homebrew](https://formulae.brew.sh/formula/tilt),
-  [manual](https://docs.tilt.dev/install.html))
-- [grpc_cli](https://github.com/grpc/grpc/blob/master/doc/command_line_tool.md)
-  ([homebrew](https://formulae.brew.sh/formula/grpc),
-  [manual](https://github.com/grpc/grpc/blob/master/doc/command_line_tool.md#code-location))
+| Tool                                                                                 | Homebrew formula    | Manual install                                                                                    |
+|--------------------------------------------------------------------------------------|---------------------|---------------------------------------------------------------------------------------------------|
+| [Bazelisk](https://github.com/bazelbuild/bazelisk)                                   | `bazelisk`          | [manual install](https://docs.bazel.build/versions/main/install-bazelisk.html)                    |
+| [Tilt](https://tilt.dev)                                                             | `tilt-dev/tap/tilt` | [manual install](https://docs.tilt.dev/install.html)                                              |
+| [Kubernetes CLI (`kubectl`)](https://kubernetes.io/docs/reference/kubectl/overview/) | `kubernetes-cli`    | [manual install](https://kubernetes.io/docs/tasks/tools/#kubectl)                                 |
+| [Docker](https://www.docker.com)                                                     | `docker`            | [manual install](https://docs.docker.com/get-docker/)                                             |
+| [minikube](https://minikube.sigs.k8s.io)                                             | `minikube`          | [manual install](https://minikube.sigs.k8s.io/docs/)                                              |
+| [grpc_cli](https://github.com/grpc/grpc/blob/master/doc/command_line_tool.md)        | `grpc`              | [manual install](https://github.com/grpc/grpc/blob/master/doc/command_line_tool.md#code-location) |
 
 If you're using MacOS or Linux, you can install these easily using [Homebrew](https://brew.sh/):
 
 ```shell
-brew install bazelisk grpc tilt-dev/tap/tilt
+brew install bazelisk tilt-dev/tap/tilt kubernetes-cli docker minikube grpc
 ```
 
 ## Running the environment with Tilt
