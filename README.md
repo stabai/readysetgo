@@ -21,6 +21,10 @@ If you're using MacOS or Linux, you can install these easily using [Homebrew](ht
 brew install bazelisk tilt-dev/tap/tilt kubernetes-cli docker minikube grpc
 ```
 
+If you're using Windows, you should probably use the [Windows Subsystem for
+Linux](https://docs.microsoft.com/en-us/windows/wsl/about) and just run things
+on the Linux terminal.
+
 ## Running the environment with Tilt
 
 Run this and follow terminal instructions to load the Tilt console:
