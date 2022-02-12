@@ -1,8 +1,8 @@
-def go_bazel_build(name, image_target):
+def go_bazel_build(name, image_target, port):
   watch_file('./deployments/{name}.yaml'.format(name=name))
   k8s_yaml(local('bazel run //deployments:{name}'.format(name=name)))
   image_name = '{name}-image'.format(name=name)
-  bazel_image = 'bazel:{image_name}'.format(image_name=image_name)
+  bazel_image = 'bazel/src${image_target}'.format(image_target=image_target[2:])
 
   custom_build(
     ref=image_name,
@@ -12,4 +12,4 @@ def go_bazel_build(name, image_target):
     deps=['main.go', 'web'],
   )
 
-  k8s_resource(name, port_forwards=8000)
+  k8s_resource(name, port_forwards=port)

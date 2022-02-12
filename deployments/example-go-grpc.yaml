@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-go-grpc
+  labels:
+    app: example-go-grpc
+spec:
+  selector:
+    matchLabels:
+      app: example-go-grpc
+  template:
+    metadata:
+      labels:
+        app: example-go-grpc
+    spec:
+      containers:
+      - name: example-go-grpc
+        image: example-go-grpc-image
+        ports:
+        - containerPort: 50051

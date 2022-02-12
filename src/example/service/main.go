@@ -15,10 +15,6 @@ var (
 	port = flag.Int("port", 50051, "The server port")
 )
 
-type service struct {
-	pb.UnimplementedExampleServiceServer
-}
-
 func main() {
 	flag.Parse()
 
@@ -43,5 +39,5 @@ func initializeServer() {
 
 func registerGrpcServices(s *grpc.Server) {
 	reflection.Register(s)
-	pb.RegisterExampleServiceServer(s, &service{})
+	pb.RegisterExampleServiceServer(s, &service{values: make(map[string]string)})
 }

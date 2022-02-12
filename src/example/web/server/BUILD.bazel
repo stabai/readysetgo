@@ -10,7 +10,7 @@ go_binary(
 )
 
 go_image(
-    name = "example-go-image",
+    name = "example-go-web-image",
     data = ["//src/example/web:web_sources"],
     embed = [":server_lib"],
     importpath = "github.com/stabai/readysetgo/src/example/web/server",
