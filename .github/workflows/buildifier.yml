@@ -1,0 +1,25 @@
+name: Buildifier
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
+
+    - name: Install Buildifier
+      run: go install github.com/bazelbuild/buildtools/buildifier@latest
+
+    - name: Check Build Files
+      run: buildifier -mode=check -lint=warn $(git status --porcelain | cut -c4- | grep -E "\b(\.bazel|\.bzl|BUILD|WORKSPACE)$" | xargs)
