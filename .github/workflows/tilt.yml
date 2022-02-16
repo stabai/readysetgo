@@ -16,5 +16,8 @@ jobs:
       - name: Setup Kubernetes Tools
         uses: yokawasa/action-setup-kube-tools@v0.8.0
 
+      - name: Start K8s Cluster
+        run: minikube start
+
       - name: Test Tilt Environment
         run: tilt ci
