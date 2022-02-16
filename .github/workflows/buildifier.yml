@@ -2,24 +2,37 @@ name: Buildifier
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
 
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-    - name: Set up Go
-      uses: actions/setup-go@v2
-      with:
-        go-version: 1.17
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
 
-    - name: Install Buildifier
-      run: go install github.com/bazelbuild/buildtools/buildifier@latest
+      - name: Install Buildifier
+        run: go install github.com/bazelbuild/buildtools/buildifier@latest
+        
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v15
+        with:
+          files: |
+            BUILD
+            WORKSPACE
+            *.bzl
+            *.bazel
 
-    - name: Check Build Files
-      run: buildifier -mode=check -lint=warn $(git status --porcelain | cut -c4- | grep -E "\b(\.bazel|\.bzl|BUILD|WORKSPACE)$" | xargs)
+      - name: Check Build Files
+        run: |
+          buildifier -mode=check -lint=warn ${{ steps.changed-files.outputs.all_changed_files }}
