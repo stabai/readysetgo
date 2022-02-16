@@ -9,10 +9,12 @@ gazelle(name = "gazelle")
 
 gazelle(
     name = "gazelle-update-repos",
+
     args = [
         "-from_file=go.mod",
         "-to_macro=tools/bazel/archives/external_go_deps.bzl%external_go_deps",
-        "-prune",
+        "-prune"
     ],
-    command = "update-repos",
+    command     = "update-repos",
 )
+# DO NOT MERGE
