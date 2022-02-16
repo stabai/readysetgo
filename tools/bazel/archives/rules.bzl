@@ -21,8 +21,8 @@ def rules_go_archives(version, sha256):
         name = "io_bazel_rules_go",
         sha256 = sha256,
         urls = [
-            "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v%s/rules_go-v%s.zip",
-            "https://github.com/bazelbuild/rules_go/releases/download/v%s/rules_go-v%s.zip",
+            "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v%s/rules_go-v%s.zip" % (version, version),
+            "https://github.com/bazelbuild/rules_go/releases/download/v%s/rules_go-v%s.zip" % (version, version),
         ],
     )
 
