@@ -1,0 +1,20 @@
+name: Tilt
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  tilt_ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Kubernetes Tools
+        uses: yokawasa/action-setup-kube-tools@v0.8.0
+
+      - name: Test Tilt Environment
+        run: tilt ci
