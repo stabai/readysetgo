@@ -1,14 +1,16 @@
 name: Tilt
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_run:
+    workflows: ["Build"]
+    branches: [main]
+    types: 
+      - completed
 
 jobs:
-  tilt_ci:
+  run-tilt-ci:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
     steps:
       - uses: actions/checkout@v2
@@ -18,6 +20,15 @@ jobs:
 
       - name: Start K8s Cluster
         run: minikube start
+
+      - name: Mount Bazel Cache
+        uses: actions/cache@v2
+        env:
+          cache-name: bazel-cache
+        with:
+          path: ~/.cache/bazel
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ github.ref }}
+          restore-keys: ${{ runner.os }}-${{ env.cache-name }}-development
 
       - name: Test Tilt Environment
         run: tilt ci
