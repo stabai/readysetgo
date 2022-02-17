@@ -16,7 +16,7 @@ jobs:
       - name: Setup Kubernetes Tools
         uses: yokawasa/action-setup-kube-tools@v0.8.0
 
-      - name: Start K8s Cluster
+      - name: Start Kubernetes Cluster
         run: minikube start
 
       - name: Mount Bazel Cache
@@ -30,3 +30,6 @@ jobs:
 
       - name: Test Tilt Environment
         run: tilt ci
+
+      - name: Stop Kubernetes Cluster
+        run: minikube stop
