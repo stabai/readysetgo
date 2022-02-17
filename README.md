@@ -6,7 +6,7 @@ Starter template for a monorepo for Go microservices using gRPC, Bazel, and Tilt
 
 ### Homebrew
 
-If you're using MacOS or Linux, you can install all required tools easily using
+If you're using macOS or Linux, you can install all required tools easily using
 the [Homebrew](https://brew.sh/) bundle defined in [`Brewfile`](Brewfile):
 
 ```shell
@@ -64,11 +64,11 @@ grpc_cli call localhost:50051 ExampleService/SetExample "id: 'foo', data: {text:
 grpc_cli call localhost:50051 ExampleService/GetExample "id: 'foo'"
 ```
 
-## To-do list for this repo
+## To-do list for this repository
 
 Near term tasks:
 
-- Add repo status badges
+- Add repository status badges
 - Add tests for servers
 - Add Bazel build cache to CI
 - Add Buf to CI
@@ -76,7 +76,7 @@ Near term tasks:
 - Add code coverage to CI
 - Add Gazelle to CI
 - Add PR comments for CI errors wherever possible
-- Add git hooks and repo setup script
+- Add git hooks and repository setup script
 - Add auto build/test of targets affected by changes
 - Generify gRPC server
 - Generify HTTP server
