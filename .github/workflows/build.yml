@@ -29,3 +29,5 @@ jobs:
 
       - name: Build
         run: bazel build //...
+
+      - uses: ./tilt.yml
