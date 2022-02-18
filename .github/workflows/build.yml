@@ -29,7 +29,3 @@ jobs:
 
       - name: Build
         run: bazel build //...
-
-# TODO: Uncomment when we have tests
-#     - name: Test
-#       run: bazel test //...
