@@ -2,9 +2,9 @@ name: Build
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build-bazel:
@@ -30,4 +30,4 @@ jobs:
       - name: Build
         run: bazel build //...
 
-      - uses: tilt.yml
+      - uses: ./.github/workflows/tilt.yml
