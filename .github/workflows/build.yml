@@ -29,5 +29,5 @@ jobs:
 
       - name: Build
         run: bazel build //...
-
-      - uses: stabai/readysetgo/.github/workflows/tilt.yml
+  run-tilt-ci-test:
+    - uses: ./.github/workflows/tilt.yml
