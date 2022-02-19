@@ -7,12 +7,16 @@ on:
     branches: [main]
 
 jobs:
-  run-lint:
-    uses: ./.github/workflows/lint.yml
-  run-buildifier:
-    uses: ./.github/workflows/buildifier.yml
-  build-bazel:
-    uses: ./.github/workflows/build.yml
-  test-tilt:
-    needs: [build-bazel]
-    uses: ./.github/workflows/tilt.yml
+  foo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo hi
+  # run-lint:
+  #   uses: ./.github/workflows/lint.yml
+  # run-buildifier:
+  #   uses: ./.github/workflows/buildifier.yml
+  # build-bazel:
+  #   uses: ./.github/workflows/build.yml
+  # test-tilt:
+  #   needs: [build-bazel]
+  #   uses: ./.github/workflows/tilt.yml
