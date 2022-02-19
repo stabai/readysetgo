@@ -18,5 +18,4 @@ jobs:
   build-bazel:
     uses: ./.github/workflows/build.yml
   test-tilt:
-    needs: [build-bazel]
     uses: ./.github/workflows/tilt.yml
