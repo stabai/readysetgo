@@ -2,6 +2,18 @@
 
 Starter template for a monorepo for Go microservices using gRPC, Bazel, and Tilt
 
+![License](https://img.shields.io/github/license/stabai/readysetgo?label=License)
+![Last Commit](https://img.shields.io/github/last-commit/stabai/readysetgo?label=Last%20Commit)
+
+![Build System](https://img.shields.io/badge/Build%20System-Bazel-43a047)
+![Service Transport](https://img.shields.io/badge/Service%20Transport-gRPC-244c5a)
+![Go Version](https://img.shields.io/github/go-mod/go-version/stabai/readysetgo/main?label=Go%20Version)
+
+[![Build](https://github.com/stabai/readysetgo/actions/workflows/build.yml/badge.svg)](https://github.com/stabai/readysetgo/actions/workflows/build.yml)
+[![Lint](https://github.com/stabai/readysetgo/actions/workflows/lint.yml/badge.svg)](https://github.com/stabai/readysetgo/actions/workflows/lint.yml)
+[![Tilt](https://github.com/stabai/readysetgo/actions/workflows/tilt.yml/badge.svg)](https://github.com/stabai/readysetgo/actions/workflows/tilt.yml)
+[![Buildifier](https://github.com/stabai/readysetgo/actions/workflows/buildifier.yml/badge.svg)](https://github.com/stabai/readysetgo/actions/workflows/buildifier.yml)
+
 ## Prerequisites
 
 ### Homebrew
@@ -69,7 +81,6 @@ grpc_cli call localhost:50051 ExampleService/GetExample "id: 'foo'"
 Near term tasks:
 
 - Add Nix environment
-- Add repository status badges
 - Add tests for servers
 - Add Buf to CI
 - Add code quality scan to CI
