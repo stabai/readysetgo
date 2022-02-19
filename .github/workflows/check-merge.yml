@@ -1,0 +1,18 @@
+name: Check Merge
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  buildifier:
+    uses: ./.github/workflows/buildifier.yml
+  super-linter:
+    uses: ./.github/workflows/lint.yml
+  build:
+    uses: ./.github/workflows/build.yml
+  tilt:
+    needs: [build]
+    uses: ./.github/workflows/tilt.yml

@@ -1,13 +1,9 @@
 name: Build
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: [workflow_call]
 
 jobs:
-  build-bazel:
+  run-bazel-build:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,7 +25,3 @@ jobs:
 
       - name: Build
         run: bazel build //...
-
-# TODO: Uncomment when we have tests
-#     - name: Test
-#       run: bazel test //...
