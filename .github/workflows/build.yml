@@ -30,4 +30,4 @@ jobs:
       - name: Build
         run: bazel build //...
 
-      - uses: ./.github/workflows/tilt.yml
+      - uses: .github/workflows/tilt.yml
