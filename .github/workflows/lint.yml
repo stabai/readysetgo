@@ -23,3 +23,5 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # TODO: Reenable github actions validation after https://github.com/rhysd/actionlint/pull/115
+          VALIDATE_GITHUB_ACTIONS: false
