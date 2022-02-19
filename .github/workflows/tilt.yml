@@ -1,7 +1,6 @@
 name: Tilt
 
-on:
-  workflow_call:
+on: [workflow_call]
 
 jobs:
   run-tilt-ci:

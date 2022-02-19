@@ -29,5 +29,7 @@ jobs:
 
       - name: Build
         run: bazel build //...
-  run-tilt-ci-test:
-    - uses: ./.github/workflows/tilt.yml
+
+  run-tilt:
+    needs: [build-bazel]
+    uses: ./.github/workflows/tilt.yml
