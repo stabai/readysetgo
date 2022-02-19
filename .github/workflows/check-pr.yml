@@ -17,5 +17,6 @@ jobs:
     uses: ./.github/workflows/lint.yml
   build-bazel:
     uses: ./.github/workflows/build.yml
-  test-tilt:
+  run-tilt-ci:
+    needs: [build-bazel]
     uses: ./.github/workflows/tilt.yml

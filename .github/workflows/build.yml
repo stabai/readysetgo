@@ -25,7 +25,3 @@ jobs:
 
       - name: Build
         run: bazel build //...
-
-  run-tilt:
-    needs: [build-bazel]
-    uses: ./.github/workflows/tilt.yml
