@@ -7,16 +7,12 @@ on:
     branches: [main]
 
 jobs:
-  foo:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo hi
-  run-buildifier:
+  buildifier:
     uses: ./.github/workflows/buildifier.yml
-  run-super-linter:
+  super-linter:
     uses: ./.github/workflows/lint.yml
-  build-bazel:
+  build:
     uses: ./.github/workflows/build.yml
-  run-tilt-ci:
+  tilt:
     needs: [build-bazel]
     uses: ./.github/workflows/tilt.yml
