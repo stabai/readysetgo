@@ -68,9 +68,9 @@ grpc_cli call localhost:50051 ExampleService/GetExample "id: 'foo'"
 
 Near term tasks:
 
+- Add Nix environment
 - Add repository status badges
 - Add tests for servers
-- Add Bazel build cache to CI
 - Add Buf to CI
 - Add code quality scan to CI
 - Add code coverage to CI
@@ -83,7 +83,8 @@ Near term tasks:
 
 Potential future projects:
 
-- Add service metadata to Bazel to allow dynamic creation of Tilt environments
+- Add [service resource dependencies](https://docs.tilt.dev/resource_dependencies.html) to Tilt environment
+- Add project configuration/generator/wizard so people don't get features they don't want
 - Add TypeScript React app to example HTTP server
 - Add support for other backend languages
 - Add Deno scripts to simplify custom workflows
