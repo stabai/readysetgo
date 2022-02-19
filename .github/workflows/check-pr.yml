@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo hi
+  run-buildifier:
+    uses: ./.github/workflows/buildifier.yml
   # run-lint:
   #   uses: ./.github/workflows/lint.yml
-  # run-buildifier:
-  #   uses: ./.github/workflows/buildifier.yml
   # build-bazel:
   #   uses: ./.github/workflows/build.yml
   # test-tilt:
