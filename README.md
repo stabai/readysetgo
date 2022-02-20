@@ -16,6 +16,15 @@ Starter template for a monorepo for Go microservices using gRPC, Bazel, and Tilt
 
 ## Prerequisites
 
+### Nix
+
+If you want to use Nix, all you *need* to do is
+[install Nix](https://nixos.org/download.html). Then, just run `nix-shell` from
+the repository root to get a fully-configured shell.
+
+However, some of your tools (e.g. IDE) might behave better if you also install
+things locally using the directions below.
+
 ### Homebrew
 
 If you're using macOS or Linux, you can install all required tools easily using
@@ -66,6 +75,12 @@ tilt up
 bazel run src/example/service
 ```
 
+### HTTP Server
+
+```shell
+bazel run src/example/web/server
+```
+
 ## Testing the gRPC Server
 
 `grpc_cli` is an easy way to issue requests to the gRPC server:
@@ -80,7 +95,6 @@ grpc_cli call localhost:50051 ExampleService/GetExample "id: 'foo'"
 
 Near term tasks:
 
-- Add Nix environment
 - Add tests for servers
 - Add Buf to CI
 - Add code quality scan to CI
