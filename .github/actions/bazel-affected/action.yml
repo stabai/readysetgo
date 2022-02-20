@@ -21,6 +21,7 @@ runs:
     - id: bazel-rdeps-query
       shell: bash
       run: |
+        echo "Query scope: '$INPUT_SCOPE'"
         query="rdeps($INPUT_SCOPE, ${{ steps.changed-files.outputs.all_changed_files }})"
         result=$(bazel query "$query" --keep_going | xargs) || echo
         echo "Query result: '$result'"
