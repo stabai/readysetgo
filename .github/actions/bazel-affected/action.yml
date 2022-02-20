@@ -4,7 +4,7 @@ description: Returns all Bazel targets affected by the changed files
 inputs:
   scope:
     description: The scope within which dependencies should be found
-    required: true
+    required: false
     default: '//...'
 outputs:
   targets:
@@ -21,8 +21,8 @@ runs:
     - id: bazel-rdeps-query
       shell: bash
       run: |
-        echo "Query scope: '$INPUT_SCOPE'"
-        query="rdeps($INPUT_SCOPE, ${{ steps.changed-files.outputs.all_changed_files }})"
+        echo "Query scope: '${{ inputs.scope }}'"
+        query="rdeps(${{ inputs.scope }}, ${{ steps.changed-files.outputs.all_changed_files }})"
         result=$(bazel query "$query" --keep_going | xargs) || echo
         echo "Query result: '$result'"
         echo "::set-output name=affected-targets::$result"
