@@ -6,5 +6,3 @@ runs:
     - uses: actions/checkout@v2
     - uses: yokawasa/action-setup-kube-tools@v0.8.0
     - uses: manusa/actions-setup-minikube@v2.4.3
-      with:
-        github token: ${{ secrets.GITHUB_TOKEN }}
