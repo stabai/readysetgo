@@ -15,13 +15,11 @@ jobs:
           go-version: 1.17
 
       - name: Mount Bazel Cache
-        uses: actions/cache@v2
-        env:
-          cache-name: bazel-cache
-        with:
-          path: ~/.cache/bazel
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ github.ref }}
-          restore-keys: ${{ runner.os }}-${{ env.cache-name }}-development
+        uses: ./.github/actions/bazel-cache
+
+      - name: Query Affected Bazel Targets
+        id: bazel-affected
+        uses: ./.github/actions/bazel-affected
 
       - name: Build
-        run: bazel build //...
+        run: bazel build ${{ steps.bazel-affected.outputs.targets }}

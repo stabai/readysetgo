@@ -12,20 +12,11 @@ jobs:
       - name: Setup Kubernetes Tools
         uses: yokawasa/action-setup-kube-tools@v0.8.0
 
-      - name: Start Kubernetes Cluster
-        run: minikube start
-
       - name: Mount Bazel Cache
-        uses: actions/cache@v2
-        env:
-          cache-name: bazel-cache
-        with:
-          path: ~/.cache/bazel
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ github.ref }}
-          restore-keys: ${{ runner.os }}-${{ env.cache-name }}-development
+        uses: ./.github/actions/bazel-cache
 
       - name: Test Tilt Environment
-        run: tilt ci
-
-      - name: Stop Kubernetes Cluster
-        run: minikube stop
+        run: |
+          minikube start
+          tilt ci
+          minikube stop

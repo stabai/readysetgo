@@ -88,9 +88,9 @@ Near term tasks:
 - Add Gazelle to CI
 - Add PR comments for CI errors wherever possible
 - Add git hooks and repository setup script
-- Add auto build/test of targets affected by changes
 - Generify gRPC server
 - Generify HTTP server
+- Add documentation for CI
 
 Potential future projects:
 
@@ -110,6 +110,7 @@ Potential future projects:
 - Add auditing to generic server
 - Add monitoring to generic server
 - Add distributed tracing to generic server
+- Add dynamic config delivery (e.g. [Protoconf](https://github.com/protoconf/protoconf)) to generic server
 - Add API simulation tests
 - Add end-to-end tests
 - Add new service setup wizard
