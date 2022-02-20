@@ -3,6 +3,7 @@ description: Starts up a Kubernetes cluster using minikube
 runs:
   using: "composite"
   steps:
+    - uses: actions/checkout@v2
     - uses: yokawasa/action-setup-kube-tools@v0.8.0
     - uses: manusa/actions-setup-minikube@v2.4.3
       with:
