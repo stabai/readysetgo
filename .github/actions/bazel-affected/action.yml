@@ -21,6 +21,6 @@ runs:
     - id: bazel-rdeps-query
       shell: bash
       run: |
-        query="\"rdeps($INPUT_SCOPE, ${{ steps.changed-files.outputs.all_changed_files }})\""
-        result="$(bazel query $query --keep_going 2> /dev/null | xargs)"
-        echo "::set-output name=affected-targets::$(echo $result)"
+        query="rdeps(\"$INPUT_SCOPE\", \"${{ steps.changed-files.outputs.all_changed_files }}\")\""
+        result="$(bazel query \"$query\" --keep_going 2> /dev/null | xargs)"
+        echo "::set-output name=affected-targets::$result"
