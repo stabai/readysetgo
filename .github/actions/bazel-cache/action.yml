@@ -1,0 +1,14 @@
+name: Mount Bazel Cache
+description: Mounts Bazel cache scoped to current user+ref
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      env:
+        cache-name: bazel-cache
+      with:
+        path: ~/.cache/bazel
+        key: ${{ runner.os }}-${{ env.cache-name }}-${{ github.ref }}
+        restore-keys: ${{ runner.os }}-${{ env.cache-name }}-development
