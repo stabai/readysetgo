@@ -4,7 +4,7 @@ description: Returns all Bazel targets affected by the changed files
 inputs:
   scope:
     description: The scope within which dependencies should be found
-    required: false
+    required: true
     default: '//...'
 outputs:
   targets:
