@@ -9,13 +9,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Start Kubernetes Cluster
-        uses: ./.github/actions/kube-start
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Mount Bazel Cache
         uses: ./.github/actions/bazel-cache
 
       - name: Test Tilt Environment
-        run: tilt ci
+        run: |
+          minikube start
+          tilt ci
+          minikube stop
