@@ -3,5 +3,5 @@ syntax = "proto3";
 package readysetgo.example;
 
 message Example {
-  string text = 2;
+  string text = 1;
 }

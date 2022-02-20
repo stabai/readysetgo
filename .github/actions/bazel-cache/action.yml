@@ -1,10 +1,12 @@
 name: Mount Bazel Cache
-description: Mounts Bazel cache scoped to current user+ref
+description: Mounts Bazel cache scoped to current os+ref
 
 runs:
-  using: "composite"
+  using: composite
+
   steps:
     - uses: actions/checkout@v2
+
     - uses: actions/cache@v2
       env:
         cache-name: bazel-cache
