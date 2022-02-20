@@ -13,3 +13,6 @@
 
 # Bazel working directories
 bazel-*
+
+# Bazel plugin project config for JetBrains IDEs
+.ijwb

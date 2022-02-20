@@ -1,0 +1,9 @@
+name: Start Kubernetes Cluster
+description: Starts up a Kubernetes cluster using minikube
+runs:
+  using: "composite"
+  steps:
+    - uses: yokawasa/action-setup-kube-tools@v0.8.0
+    - uses: manusa/actions-setup-minikube@v2.4.3
+      with:
+        github token: ${{ secrets.GITHUB_TOKEN }}
