@@ -6,10 +6,12 @@ inputs:
     description: The scope within which dependencies should be found
     required: false
     default: '//...'
+
 outputs:
   targets:
     description: All targets affected by the changed files
     value: ${{ steps.bazel-rdeps-query.outputs.affected-targets }}
+
 runs:
   using: "composite"
   steps:

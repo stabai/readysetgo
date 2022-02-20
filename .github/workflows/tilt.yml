@@ -11,6 +11,8 @@ jobs:
 
       - name: Start Kubernetes Cluster
         uses: ./.github/actions/kube-start
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Mount Bazel Cache
         uses: ./.github/actions/bazel-cache
