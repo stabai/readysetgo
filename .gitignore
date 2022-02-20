@@ -14,5 +14,6 @@
 # Bazel working directories
 bazel-*
 
-# Bazel plugin project config for JetBrains IDEs
+# IDE configurations
+.vscode
 .ijwb

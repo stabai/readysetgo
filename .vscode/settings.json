@@ -1,5 +1,0 @@
-{
-  "yaml.schemas": {
-    "https://json.schemastore.org/github-workflow.json": "file:///mnt/hdd/IdeaProjects/readysetgo/.github/workflows/build.yml"
-  }
-}
