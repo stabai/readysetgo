@@ -9,6 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Setup Kubernetes Tools
+        uses: yokawasa/action-setup-kube-tools@v0.8.0
+
       - name: Mount Bazel Cache
         uses: ./.github/actions/bazel-cache
 
