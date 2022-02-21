@@ -1,4 +1,4 @@
-package main
+package service
 
 import (
 	"context"
@@ -7,12 +7,12 @@ import (
 	"google.golang.org/protobuf/types/known/emptypb"
 )
 
-func (s *service) SetExample(
+func (s ExampleService) SetExample(
 	_ context.Context,
 	in *v1.SetExampleRequest,
 ) (*emptypb.Empty, error) {
 
-	s.values[in.Id] = in.Data.Text
+	s.Values[in.Id] = in.Data.Text
 
 	resp := emptypb.Empty{}
 	return &resp, nil

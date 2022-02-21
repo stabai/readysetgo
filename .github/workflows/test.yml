@@ -1,0 +1,26 @@
+name: Test
+
+on: [workflow_call]
+
+jobs:
+  run-tilt-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Mount Bazel Cache
+        uses: ./.github/actions/bazel-cache
+
+      - name: Test Tilt Environment
+        run: |
+          minikube start
+          tilt ci
+          minikube stop
+
+      - name: Query Affected Bazel Targets
+        id: bazel-affected
+        uses: ./.github/actions/bazel-affected
+
+      - name: Build
+        run: bazel test ${{ steps.bazel-affected.outputs.targets }}

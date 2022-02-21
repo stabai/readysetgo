@@ -1,34 +1,51 @@
-load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_test")
 load("@io_bazel_rules_docker//go:image.bzl", "go_image")
+load("//src/server:go_service.bzl", "go_grpc_server", "go_service_library")
 
-go_library(
-    name = "service_lib",
+package(default_visibility = ["//visibility:private"])
+
+go_service_library(
+    name = "service",
     srcs = [
         "get_example.go",
-        "main.go",
         "service.go",
         "set_example.go",
     ],
+    go_service_proto = "//proto/example/service/v1:example_service_go_proto",
     importpath = "github.com/stabai/readysetgo/src/example/service",
-    visibility = ["//visibility:private"],
     deps = [
         "//proto/example:example_go_proto",
-        "//proto/example/service/v1:example_service_go_proto",
-        "@org_golang_google_grpc//:go_default_library",
-        "@org_golang_google_grpc//reflection",
         "@org_golang_google_protobuf//types/known/emptypb",
     ],
 )
 
+go_grpc_server(
+    name = "server_lib",
+    base_importpath = "github.com/stabai/readysetgo/src/example/service",
+    go_service = ":service",
+    go_service_proto = "//proto/example/service/v1:example_service_go_proto",
+    service_name = "ExampleService",
+)
+
 go_binary(
-    name = "service",
-    embed = [":service_lib"],
+    name = "server",
+    embed = [":server_lib"],
     visibility = ["//visibility:public"],
 )
 
 go_image(
     name = "example-go-grpc-image",
-    embed = [":service_lib"],
+    embed = [":server_lib"],
     importpath = "github.com/stabai/readysetgo/src/example/service",
     visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "service_test",
+    srcs = ["service_test.go"],
+    deps = [
+        ":service",  # keep
+        "//proto/example/service/v1:example_service_go_proto",
+        "//src/server/testing",
+    ],
 )
