@@ -24,7 +24,7 @@ external_go_deps()
 
 go_rules_dependencies()
 
-go_register_toolchains(version = "1.17.2")
+go_register_toolchains(version = "1.17.6")
 
 # gazelle:repo bazel_gazelle - suppress warning because repo is initialized in macro
 gazelle_dependencies()
