@@ -11,6 +11,6 @@ type ExampleService struct {
 
 func NewExampleService() *ExampleService {
 	svc := ExampleService{Values: make(map[string]string)}
-	svc.Values["animal"] = "cats"
+	svc.Values["animal"] = "cats" //test
 	return &svc
 }
