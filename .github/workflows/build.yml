@@ -21,5 +21,5 @@ jobs:
         id: bazel-affected
         uses: ./.github/actions/bazel-affected
 
-      - name: Build
+      - name: Run Bazel Builds for Affected Targets
         run: bazel build ${{ steps.bazel-affected.outputs.targets }}
