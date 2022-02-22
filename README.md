@@ -10,7 +10,7 @@ Starter template for a monorepo for Go microservices using gRPC, Bazel, and Tilt
 ![Go Version](https://img.shields.io/github/go-mod/go-version/stabai/readysetgo/main?label=Go%20Version)
 
 [![Build](https://github.com/stabai/readysetgo/actions/workflows/build.yml/badge.svg)](https://github.com/stabai/readysetgo/actions/workflows/build.yml)
-[![Test](https://github.com/stabai/readysetgo/actions/workflows/build.yml/test.svg)](https://github.com/stabai/readysetgo/actions/workflows/test.yml)
+[![Test](https://github.com/stabai/readysetgo/actions/workflows/test.yml/badge.svg)](https://github.com/stabai/readysetgo/actions/workflows/test.yml)
 [![Lint](https://github.com/stabai/readysetgo/actions/workflows/lint.yml/badge.svg)](https://github.com/stabai/readysetgo/actions/workflows/lint.yml)
 [![Tilt](https://github.com/stabai/readysetgo/actions/workflows/tilt.yml/badge.svg)](https://github.com/stabai/readysetgo/actions/workflows/tilt.yml)
 [![Buildifier](https://github.com/stabai/readysetgo/actions/workflows/buildifier.yml/badge.svg)](https://github.com/stabai/readysetgo/actions/workflows/buildifier.yml)
