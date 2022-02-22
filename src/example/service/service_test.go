@@ -16,6 +16,7 @@ func setUp() {
 	ts = serverTesting.NewTestServer()
 	pb.RegisterExampleServiceServer(ts.Server, impl.NewExampleService())
 	ts.StartTestServer()
+	// foo
 }
 
 func tearDown() {
