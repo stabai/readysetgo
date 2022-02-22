@@ -17,7 +17,7 @@ Starter template for a monorepo for Go microservices using gRPC, Bazel, and Tilt
 
 ## Prerequisites
 
-### Nix
+### Nix (recommended)
 
 If you want to use Nix, all you *need* to do is
 [install Nix](https://nixos.org/download.html). Then, just run `nix-shell` from
