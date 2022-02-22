@@ -10,7 +10,7 @@ jobs:
   buildifier:
     uses: /.github/workflows/buildifier.yml
   super-linter:
-    uses: ./.github/workflows/lint.yml
+    uses: /.github/workflows/lint.yml
   build:
     uses: ./.github/workflows/build.yml
   test:
