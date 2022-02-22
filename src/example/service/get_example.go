@@ -1,4 +1,4 @@
-package main
+package service
 
 import (
 	"context"
@@ -7,7 +7,7 @@ import (
 	v1 "github.com/stabai/readysetgo/proto/example/service/v1"
 )
 
-func (s *service) GetExample(
+func (s ExampleService) GetExample(
 	_ context.Context,
 	in *v1.GetExampleRequest,
 ) (*v1.GetExampleResponse, error) {
@@ -15,7 +15,7 @@ func (s *service) GetExample(
 	resp := v1.GetExampleResponse{
 		Id: in.Id,
 		Data: &pb.Example{
-			Text: s.values[in.Id],
+			Text: s.Values[in.Id],
 		},
 	}
 	return &resp, nil

@@ -10,6 +10,7 @@ Starter template for a monorepo for Go microservices using gRPC, Bazel, and Tilt
 ![Go Version](https://img.shields.io/github/go-mod/go-version/stabai/readysetgo/main?label=Go%20Version)
 
 [![Build](https://github.com/stabai/readysetgo/actions/workflows/build.yml/badge.svg)](https://github.com/stabai/readysetgo/actions/workflows/build.yml)
+[![Test](https://github.com/stabai/readysetgo/actions/workflows/build.yml/test.svg)](https://github.com/stabai/readysetgo/actions/workflows/test.yml)
 [![Lint](https://github.com/stabai/readysetgo/actions/workflows/lint.yml/badge.svg)](https://github.com/stabai/readysetgo/actions/workflows/lint.yml)
 [![Tilt](https://github.com/stabai/readysetgo/actions/workflows/tilt.yml/badge.svg)](https://github.com/stabai/readysetgo/actions/workflows/tilt.yml)
 [![Buildifier](https://github.com/stabai/readysetgo/actions/workflows/buildifier.yml/badge.svg)](https://github.com/stabai/readysetgo/actions/workflows/buildifier.yml)
@@ -72,7 +73,7 @@ tilt up
 ### gRPC Server
 
 ```shell
-bazel run src/example/service
+bazel run src/example/service:server
 ```
 
 ### HTTP Server
@@ -95,14 +96,12 @@ grpc_cli call localhost:50051 ExampleService/GetExample "id: 'foo'"
 
 Near term tasks:
 
-- Add tests for servers
 - Add Buf to CI
 - Add code quality scan to CI
 - Add code coverage to CI
 - Add Gazelle to CI
 - Add PR comments for CI errors wherever possible
 - Add git hooks and repository setup script
-- Generify gRPC server
 - Generify HTTP server
 - Add documentation for CI
 
