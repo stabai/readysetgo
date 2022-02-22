@@ -62,7 +62,7 @@ If you haven't already, start up a Kubernetes cluster:
 minikube start
 ```
 
-Then, run this and follow terminal instructions to load the Tilt console:
+Then, run Tilt and follow the instructions in the terminal to open the web console:
 
 ```shell
 tilt up
