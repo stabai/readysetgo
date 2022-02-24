@@ -28,6 +28,7 @@ jobs:
 
       - name: Get Changed Files
         id: changed-files
+        if: ${{ inputs.changed_files_only }}
         uses: tj-actions/changed-files@v15
         with:
           files: |
@@ -38,8 +39,12 @@ jobs:
 
       - name: Check Build Files
         run: |
-          fileset="${{ inputs.changed_files_only }}"
-          if [[ "$fileset" == "" ]; then
+          changed_files_only="${{ inputs.changed_files_only }}"
+          if [[ "$changed_files_only" == "true" ]; then
+            fileset="${{ steps.changed-files.outputs.all_changed_files }}"
+          else
             fileset="-r ."
           fi
-          buildifier -mode=check -lint=warn $fileset
+          if [[ "$fileset" != "" ]]; then
+            buildifier -mode=check -lint=warn $fileset
+          fi
