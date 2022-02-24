@@ -40,7 +40,7 @@ jobs:
       - name: Check Build Files
         run: |
           changed_files_only="${{ inputs.changed_files_only }}"
-          if [[ "$changed_files_only" == "true" ]; then
+          if [[ "$changed_files_only" == "true" ]]; then
             fileset="${{ steps.changed-files.outputs.all_changed_files }}"
           else
             fileset="-r ."
