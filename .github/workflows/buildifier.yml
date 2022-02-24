@@ -38,7 +38,7 @@ jobs:
 
       - name: Check Build Files
         run: |
-          fileset="${{ changed_files_only }}"
+          fileset="${{ inputs.changed_files_only }}"
           if [[ "$fileset" == "" ]; then
             fileset="-r ."
           fi
