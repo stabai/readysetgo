@@ -41,6 +41,7 @@ runs:
     - id: bazel-command
       shell: bash
       run: |
+        command="${{ inputs.command }}"
         targets="${{ steps.bazel-rdeps-query.outputs.affected-targets }}"
         if [[ "$targets" == "" ]]; then
           targets="${{ inputs.scope }}"
