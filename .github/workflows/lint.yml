@@ -6,7 +6,15 @@
 # https://github.com/github/super-linter
 name: Lint
 
-on: [workflow_call]
+on:
+  push:
+    branches: [main]
+  workflow_call:
+    inputs:
+      changed_files_only:
+        type: boolean
+        default: false
+        required: false
 
 jobs:
   run-lint:
@@ -20,7 +28,7 @@ jobs:
       - name: Lint Code
         uses: github/super-linter/slim@v4
         env:
-          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_ALL_CODEBASE: ${{ !changed_files_only }}
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # TODO: Reenable github actions validation after https://github.com/rhysd/actionlint/pull/115

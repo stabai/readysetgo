@@ -1,6 +1,14 @@
 name: Buildifier
 
-on: [workflow_call]
+on:
+  push:
+    branches: [main]
+  workflow_call:
+    inputs:
+      changed_files_only:
+        type: boolean
+        default: false
+        required: false
 
 jobs:
   run-check:
@@ -30,4 +38,8 @@ jobs:
 
       - name: Check Build Files
         run: |
-          buildifier -mode=check -lint=warn ${{ steps.changed-files.outputs.all_changed_files }}
+          fileset="${{ changed_files_only }}"
+          if [[ "$fileset" == "" ]; then
+            fileset="-r ."
+          fi
+          buildifier -mode=check -lint=warn $fileset

@@ -1,6 +1,14 @@
 name: Test
 
-on: [workflow_call]
+on:
+  push:
+    branches: [main]
+  workflow_call:
+    inputs:
+      affected_targets_only:
+        type: boolean
+        default: false
+        required: false
 
 jobs:
   run-bazel-test:
@@ -17,9 +25,8 @@ jobs:
       - name: Mount Bazel Cache
         uses: ./.github/actions/bazel-cache
 
-      - name: Query Affected Bazel Targets
-        id: bazel-affected
-        uses: ./.github/actions/bazel-affected
-
-      - name: Run Bazel Tests for Affected Targets
-        run: bazel build ${{ steps.bazel-affected.outputs.targets }}
+      - name: Run Bazel Tests
+        uses: ./.github/actions/bazel-command
+        with:
+          command: "test"
+          affected_targets_only: "${{ inputs.affected_targets_only }}"

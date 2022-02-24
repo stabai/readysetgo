@@ -30,6 +30,3 @@ jobs:
         with:
           command: "build"
           affected_targets_only: "${{ inputs.affected_targets_only }}"
-
-      - name: Run Bazel Builds for Affected Targets
-        run: bazel build ${{ steps.bazel-affected.outputs.targets }}
