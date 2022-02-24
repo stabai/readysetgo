@@ -1,6 +1,14 @@
 name: Build
 
-on: [workflow_call]
+on:
+  pull_request:
+    branches: [main]
+  workflow_call:
+    inputs:
+      affected_targets_only:
+        type: boolean
+        default: false
+        required: false
 
 jobs:
   run-bazel-build:
@@ -17,9 +25,11 @@ jobs:
       - name: Mount Bazel Cache
         uses: ./.github/actions/bazel-cache
 
-      - name: Query Affected Bazel Targets
-        id: bazel-affected
-        uses: ./.github/actions/bazel-affected
+      - name: Run Bazel Builds
+        uses: ./.github/actions/bazel-command
+        with:
+          command: "build"
+          affected_targets_only: "${{ inputs.affected_targets_only }}"
 
       - name: Run Bazel Builds for Affected Targets
         run: bazel build ${{ steps.bazel-affected.outputs.targets }}
