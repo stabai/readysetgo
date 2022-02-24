@@ -1,0 +1,58 @@
+name: Bazel
+description: Executes Bazel commands
+
+inputs:
+  command:
+    description: The Bazel command to run (should be 'build', 'test', or 'run')
+    required: true
+  affected_targets_only:
+    description: Whether to limit the action to targets affected by current changes
+    required: false
+    default: "false"
+  scope:
+    description: The scope within which targets should be found
+    required: false
+    default: "//..."
+
+runs:
+  using: composite
+
+  steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - id: changed-files
+      if: ${{ inputs.affected_targets_only == 'true' }}
+      uses: tj-actions/changed-files@v15
+      with:
+        separator: +
+
+    - id: bazel-rdeps-query
+      if: ${{ inputs.affected_targets_only == 'true' }}
+      shell: bash
+      run: |
+        echo "Query scope: '${{ inputs.scope }}'"
+        query="rdeps(${{ inputs.scope }}, ${{ steps.changed-files.outputs.all_changed_files }})"
+        result=$(bazel query "$query" --keep_going | xargs) || echo
+        echo "Query result: '$result'"
+        echo "::set-output name=affected-targets::$result"
+
+    - id: bazel-command
+      shell: bash
+      run: |
+        command="${{ inputs.command }}"
+        affected_targets_only="${{ inputs.affected_targets_only }}"
+        if [[ "$affected_targets_only" == "true" ]]; then
+          targets="${{ steps.bazel-rdeps-query.outputs.affected-targets }}"
+        else
+          echo "Executing $command on entire scope."
+          targets="${{ inputs.scope }}"
+        fi
+        if [[ "$targets" != "" ]]; then
+          echo "Executing Bazel command:"
+          echo "bazel $command $targets"
+          bazel $command $targets
+        else
+          echo "Skipping Bazel $command; no targets in scope"
+        fi

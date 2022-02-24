@@ -1,6 +1,14 @@
 name: Buildifier
 
-on: [workflow_call]
+on:
+  push:
+    branches: [main]
+  workflow_call:
+    inputs:
+      changed_files_only:
+        type: boolean
+        default: false
+        required: false
 
 jobs:
   run-check:
@@ -20,6 +28,7 @@ jobs:
 
       - name: Get Changed Files
         id: changed-files
+        if: ${{ inputs.changed_files_only }}
         uses: tj-actions/changed-files@v15
         with:
           files: |
@@ -30,4 +39,16 @@ jobs:
 
       - name: Check Build Files
         run: |
-          buildifier -mode=check -lint=warn ${{ steps.changed-files.outputs.all_changed_files }}
+          changed_files_only="${{ inputs.changed_files_only }}"
+          if [[ "$changed_files_only" == "true" ]]; then
+            fileset="${{ steps.changed-files.outputs.all_changed_files }}"
+          else
+            echo "Executing buildifier on all files."
+            fileset="-r ."
+          fi
+          if [[ "$fileset" != "" ]]; then
+            echo "Executing buildifier on: $fileset"
+            buildifier -mode=check -lint=warn $fileset
+          else
+            echo "Skipping buildifier; no files to check"
+          fi
