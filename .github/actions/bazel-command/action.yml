@@ -42,10 +42,17 @@ runs:
       shell: bash
       run: |
         command="${{ inputs.command }}"
-        targets="${{ steps.bazel-rdeps-query.outputs.affected-targets }}"
-        if [[ "$targets" == "" ]]; then
+        affected_targets_only="${{ inputs.affected_targets_only }}"
+        if [[ "$affected_targets_only" == "true" ]]; then
+          targets="${{ steps.bazel-rdeps-query.outputs.affected-targets }}"
+        else
+          echo "Executing $command on entire scope."
           targets="${{ inputs.scope }}"
         fi
-        echo "Executing Bazel command:"
-        echo "bazel $command $targets"
-        bazel $command $targets
+        if [[ "$targets" != "" ]]; then
+          echo "Executing Bazel command:"
+          echo "bazel $command $targets"
+          bazel $command $targets
+        else
+          echo "Skipping Bazel $command; no targets in scope"
+        fi
