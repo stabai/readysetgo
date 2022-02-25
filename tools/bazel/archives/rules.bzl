@@ -1,3 +1,5 @@
+"""Rules to load archives for Bazel plugins."""
+
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 def rules_docker_archives(version, sha256):

@@ -1,6 +1,9 @@
+"""Rule to load repositories for external dependencies managed by Gazelle."""
+
 load("@bazel_gazelle//:deps.bzl", "go_repository")
 
 def external_go_deps():
+    """Loads all external dependency repositories."""
     go_repository(
         name = "co_honnef_go_tools",
         importpath = "honnef.co/go/tools",
