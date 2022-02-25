@@ -1,28 +1,51 @@
+"""Rules for building gRPC services in Go."""
+
 load("@io_bazel_rules_go//go:def.bzl", "GoLibrary", "go_library")
 
 _TEMPLATE = "//src/server:main.tmpl"
 _DEFAULT_PORT = 50051
 
-def go_service_library(**kwargs):
+def go_service_library(go_service_proto, **kwargs):
+    """
+    Creates a Go library for the implementation of a service contract.
+
+    Args:
+      go_service_proto: The Go library containing the proto service definition
+      **kwargs: Additional args for the generated go_library
+    """
+
     go_library(
         deps = kwargs.pop("deps", default = []) + [
-            kwargs.pop("go_service_proto"),
+            go_service_proto,
         ],
         **kwargs
     )
 
-def go_grpc_server(**kwargs):
+def go_grpc_server(go_service_proto, go_service, base_importpath, service_name, default_port = _DEFAULT_PORT, **kwargs):
+    """
+    Creates a Go library for a gRPC server hosting the specified service.
+
+    Args:
+      go_service_proto: The Go library containing the proto service definition
+      go_service: The Go library containing the implementation of the service
+      base_importpath: The importpath of the Go library containing the
+                       implementation of the service
+      service_name: The name of the service as declared in the proto definition
+      default_port: The default port that the server should run on
+      **kwargs: Additional args for the generated go_library
+    """
+
     name = kwargs.pop("name")
     main_file_target_name = "%s_main_file" % name
-    go_proto_target = kwargs.pop("go_service_proto")
-    go_impl_target = kwargs.pop("go_service")
-    base_importpath = kwargs.pop("base_importpath")
+    go_proto_target = go_service_proto
+    go_impl_target = go_service
+    base_importpath = base_importpath
     go_grpc_service_main_file(
         name = main_file_target_name,
         go_service_proto = go_proto_target,
         go_service = go_impl_target,
-        service_name = kwargs.pop("service_name"),
-        default_port = kwargs.pop("default_port", default = _DEFAULT_PORT),
+        service_name = service_name,
+        default_port = default_port,
     )
     go_library(
         name = name,
