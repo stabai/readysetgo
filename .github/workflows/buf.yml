@@ -21,7 +21,7 @@ jobs:
           input: 'proto'
 
       - name: Run Breaking Change Detection
-        if: ${{ github.event_name != "push" }}
+        if: ${{ github.event_name }} != "push"
         uses: bufbuild/buf-breaking-action@v1
         with:
           input: 'proto'
