@@ -9,6 +9,8 @@ jobs:
     uses: ./.github/workflows/buildifier.yml
     with:
       changed_files_only: true
+  buf:
+    uses: ./.github/workflows/buf.yml
   super-linter:
     uses: ./.github/workflows/lint.yml
     with:

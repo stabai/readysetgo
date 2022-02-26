@@ -5,22 +5,6 @@ load("@io_bazel_rules_go//go:def.bzl", "GoLibrary", "go_library")
 _TEMPLATE = "//src/server:main.tmpl"
 _DEFAULT_PORT = 50051
 
-def go_service_library(go_service_proto, **kwargs):
-    """
-    Creates a Go library for the implementation of a service contract.
-
-    Args:
-      go_service_proto: The Go library containing the proto service definition
-      **kwargs: Additional args for the generated go_library
-    """
-
-    go_library(
-        deps = kwargs.pop("deps", default = []) + [
-            go_service_proto,
-        ],
-        **kwargs
-    )
-
 def go_grpc_server(go_service_proto, go_service, base_importpath, service_name, default_port = _DEFAULT_PORT, **kwargs):
     """
     Creates a Go library for a gRPC server hosting the specified service.

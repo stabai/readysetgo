@@ -45,14 +45,28 @@ If for any reason you need to install them manually, this table contains all of
 the required tools:
 
 | Tool                                                                                 | Install instructions                                                                            |
-| ------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+|--------------------------------------------------------------------------------------| ----------------------------------------------------------------------------------------------- |
 | [Bazelisk](https://github.com/bazelbuild/bazelisk)                                   | [instructions](https://docs.bazel.build/versions/main/install-bazelisk.html)                    |
+| [Buf](https://buf.build)                                                             | [instructions](https://docs.buf.build/installation)                                              |
 | [Tilt](https://tilt.dev)                                                             | [instructions](https://docs.tilt.dev/install.html)                                              |
 | [Kubernetes CLI (`kubectl`)](https://kubernetes.io/docs/reference/kubectl/overview/) | [instructions](https://kubernetes.io/docs/tasks/tools/#kubectl)                                 |
 | [Docker](https://www.docker.com)                                                     | [instructions](https://docs.docker.com/get-docker/)                                             |
 | [minikube](https://minikube.sigs.k8s.io)                                             | [instructions](https://minikube.sigs.k8s.io/docs/)                                              |
 | [grpc_cli](https://github.com/grpc/grpc/blob/master/doc/command_line_tool.md)        | [instructions](https://github.com/grpc/grpc/blob/master/doc/command_line_tool.md#code-location) |
 | [buildifier](https://github.com/bazelbuild/buildtools/tree/master/buildifier)        | [instructions](https://github.com/bazelbuild/buildtools/tree/master/buildifier#setup)           |
+
+## Initializing your repository
+
+Run the [tidy.sh](tidy.sh) script to initialize your repository after cloning
+and installing prerequisites:
+
+```shell
+bazel run //:tidy
+```
+
+You should also run this script after doing any of the following:
+- Modifying protobuf files
+- Adding/remove dependencies to Go code
 
 ## Running the environment with Tilt
 
@@ -73,13 +87,13 @@ tilt up
 ### gRPC Server
 
 ```shell
-bazel run src/example/service:server
+bazel run //src/example/service:server
 ```
 
 ### HTTP Server
 
 ```shell
-bazel run src/example/web/server
+bazel run //src/example/web/server
 ```
 
 ## Testing the gRPC Server
@@ -96,7 +110,6 @@ grpc_cli call localhost:50051 ExampleService/GetExample "id: 'foo'"
 
 Near term tasks:
 
-- Add Buf to CI
 - Add code quality scan to CI
 - Add code coverage to CI
 - Add Gazelle to CI
