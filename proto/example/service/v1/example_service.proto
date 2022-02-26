@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package example.service.v1;
 
-import "google/protobuf/empty.proto";
 import "example/example.proto";
+import "google/protobuf/empty.proto";
 
 service ExampleService {
   rpc GetExample(GetExampleRequest) returns (GetExampleResponse);
