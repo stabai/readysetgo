@@ -11,6 +11,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          # Full git history is needed for breaking change detection
+          fetch-depth: 0
 
       - name: Set up Buf
         uses: bufbuild/buf-setup-action@v0.5.0
@@ -21,4 +24,4 @@ jobs:
       - name: Run Breaking Change Detection
         uses: bufbuild/buf-breaking-action@v1
         with:
-          against: 'https://github.com/${GITHUB_REPOSITORY}.git#branch=main'
+          against: 'https://github.com/${GITHUB_REPOSITORY}.git#branch=main,ref=HEAD~1,subdir=proto'
