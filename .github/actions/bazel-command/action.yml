@@ -59,7 +59,7 @@ runs:
             # https://docs.bazel.build/versions/4.2.2/guide.html#what-exit-code-will-i-get
             exit 0
           else
-            exit $bazel_result
+            exit $bazel_return_code
           fi
         else
           echo "Skipping Bazel $command; no targets in scope"
