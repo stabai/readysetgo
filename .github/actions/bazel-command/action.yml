@@ -52,10 +52,9 @@ runs:
         if [[ "$targets" != "" ]]; then
           echo "Executing Bazel command:"
           echo "bazel $command $targets"
-          bazel_result="0"
-          bazel $command $targets || bazel_result="$?"
-          echo "result was: $bazel_result"
-          if [[ "$bazel_result" == "4" && "$command" == "test" ]]; then
+          bazel_return_code="0"
+          bazel $command $targets || bazel_return_code="$?"
+          if [[ "$bazel_return_code" == "4" && "$command" == "test" ]]; then
             # Exit code 4 just means that there were no tests, so don't fail.
             # https://docs.bazel.build/versions/4.2.2/guide.html#what-exit-code-will-i-get
             exit 0
