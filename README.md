@@ -11,6 +11,7 @@ Starter template for a monorepo for Go microservices using gRPC, Bazel, and Tilt
 
 [![Build](https://github.com/stabai/readysetgo/actions/workflows/build.yml/badge.svg)](https://github.com/stabai/readysetgo/actions/workflows/build.yml)
 [![Test](https://github.com/stabai/readysetgo/actions/workflows/test.yml/badge.svg)](https://github.com/stabai/readysetgo/actions/workflows/test.yml)
+[![Buf](https://github.com/stabai/readysetgo/actions/workflows/buf.yml/badge.svg)](https://github.com/stabai/readysetgo/actions/workflows/buf.yml)
 [![Lint](https://github.com/stabai/readysetgo/actions/workflows/lint.yml/badge.svg)](https://github.com/stabai/readysetgo/actions/workflows/lint.yml)
 [![Tilt](https://github.com/stabai/readysetgo/actions/workflows/tilt.yml/badge.svg)](https://github.com/stabai/readysetgo/actions/workflows/tilt.yml)
 [![Buildifier](https://github.com/stabai/readysetgo/actions/workflows/buildifier.yml/badge.svg)](https://github.com/stabai/readysetgo/actions/workflows/buildifier.yml)
@@ -127,16 +128,15 @@ Potential future projects:
 - Add Deno scripts to simplify custom workflows
 - Add production deployment examples
 - Add database to environment
+- Add dynamic configs to environment
 - Add ORM to any example server
 - Add pubsub to any example server
 - Add cache to any example server
-- Add GraphQL to environment
 - Add authentication to generic server
 - Add authorization to generic server
 - Add auditing to generic server
 - Add monitoring to generic server
 - Add distributed tracing to generic server
-- Add dynamic config delivery (e.g. [Protoconf](https://github.com/protoconf/protoconf)) to generic server
 - Add API simulation tests
 - Add end-to-end tests
 - Add new service setup wizard
