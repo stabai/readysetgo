@@ -23,13 +23,13 @@ runs:
         fetch-depth: 0
 
     - id: changed-files
-      if: ${{ inputs.affected_targets_only == 'true' }}
+      if: ${{ inputs.affected_targets_only }}
       uses: tj-actions/changed-files@v15
       with:
         separator: +
 
     - id: bazel-rdeps-query
-      if: ${{ inputs.affected_targets_only == 'true' }}
+      if: ${{ inputs.affected_targets_only}}
       shell: bash
       run: |
         echo "Query scope: '${{ inputs.scope }}'"
@@ -53,6 +53,14 @@ runs:
           echo "Executing Bazel command:"
           echo "bazel $command $targets"
           bazel $command $targets
+          bazel_result="$?"
+          if [[ "$bazel_result" == "4" && "$command" == "test" ]]; then
+            # Exit code 4 just means that there were no tests, so don't fail.
+            # https://docs.bazel.build/versions/4.2.2/guide.html#what-exit-code-will-i-get
+            exit 0
+          else
+            exit $bazel_result
+          fi
         else
           echo "Skipping Bazel $command; no targets in scope"
         fi

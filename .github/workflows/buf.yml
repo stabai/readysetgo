@@ -28,7 +28,7 @@ jobs:
           input: 'proto'
 
       - name: Run Breaking Change Detection
-        if: ${{ inputs.detect_breaking_changes == 'true' }}
+        if: ${{ inputs.detect_breaking_changes }}
         uses: bufbuild/buf-breaking-action@v1
         with:
           input: 'proto'
