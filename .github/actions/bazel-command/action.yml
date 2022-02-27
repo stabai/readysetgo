@@ -52,8 +52,8 @@ runs:
         if [[ "$targets" != "" ]]; then
           echo "Executing Bazel command:"
           echo "bazel $command $targets"
-          bazel $command $targets
-          bazel_result="$?"
+          bazel_result="0"
+          bazel $command $targets || bazel_result="$?"
           echo "result was: $bazel_result"
           if [[ "$bazel_result" == "4" && "$command" == "test" ]]; then
             # Exit code 4 just means that there were no tests, so don't fail.
