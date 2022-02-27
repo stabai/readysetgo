@@ -17,3 +17,6 @@ bazel-*
 # IDE configurations
 .vscode
 .ijwb
+
+# Generated protobuf code
+*.pb.*

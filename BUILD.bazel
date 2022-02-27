@@ -4,7 +4,7 @@ package(default_visibility = ["//visibility:public"])
 
 # gazelle:prefix github.com/stabai/readysetgo
 # gazelle:go_naming_convention import
-# gazelle:proto package
+# gazelle:proto disable
 gazelle(name = "gazelle")
 
 gazelle(
@@ -15,4 +15,9 @@ gazelle(
         "-prune",
     ],
     command = "update-repos",
+)
+
+sh_binary(
+    name = "tidy",
+    srcs = ["tidy.sh"],
 )

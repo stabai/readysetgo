@@ -9,6 +9,9 @@ brew "golang"
 
 brew "bazelisk"
 
+tap "bufbuild/buf"
+brew "buf"
+
 brew "buildifier"
 
 brew "grpc"
