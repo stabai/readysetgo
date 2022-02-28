@@ -3,6 +3,8 @@ name: Buf
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_call:
     inputs:
       detect_breaking_changes:
