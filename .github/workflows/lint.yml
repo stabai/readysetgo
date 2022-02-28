@@ -36,15 +36,11 @@ jobs:
         run: buf generate
         shell: bash
 
-      - name: check thing
-        run: ls proto/example/service/v1/
-        shell: bash
-
       - name: Lint Code
-        uses: github/super-linter/slim@v4
+        uses: github/super-linter/slim@6eed012d2d9731d8896242a3708f2ecca5faa98e
         env:
           VALIDATE_ALL_CODEBASE: ${{ !inputs.changed_files_only }}
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # TODO: Reenable github actions validation after https://github.com/rhysd/actionlint/pull/115
-          VALIDATE_GITHUB_ACTIONS: false
+          # TODO: Figure out why golangci-lint ignores generated protos
+          VALIDATE_GO: false
