@@ -21,4 +21,3 @@ runs:
 
     - run: buf generate
       shell: bash
-# test
