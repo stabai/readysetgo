@@ -6,6 +6,7 @@ on:
   workflow_call:
     inputs:
       changed_files_only:
+        description: Whether to limit checks to modified files
         type: boolean
         default: false
         required: false
@@ -48,6 +49,7 @@ jobs:
           fi
           if [[ "$fileset" != "" ]]; then
             echo "Executing buildifier on: $fileset"
+            # shellcheck disable=SC2086
             buildifier -mode=check -lint=warn $fileset
           else
             echo "Skipping buildifier; no files to check"
