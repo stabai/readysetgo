@@ -1,5 +1,5 @@
 # This workflow executes several linters on changed files based on languages used in your code base whenever
-# you push a code or open a pull request.
+# you push code or open a pull request.
 #
 # You can adjust the behavior by modifying this file.
 # For more information, see:
@@ -34,6 +34,10 @@ jobs:
 
       - name: Generate Protos
         run: buf generate
+        shell: bash
+
+      - name: check thing
+        run: ls proto/example/service/v1/
         shell: bash
 
       - name: Lint Code
