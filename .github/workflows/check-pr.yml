@@ -1,31 +1,31 @@
-#name: Check PR
-#
-#on:
-#  pull_request:
-#    branches: [main]
-#
-#jobs:
-#  buildifier:
-#    uses: ./.github/workflows/buildifier.yml
-#    with:
-#      changed_files_only: true
-#  buf:
-#    uses: ./.github/workflows/buf.yml
-#    with:
-#      detect_breaking_changes: true
-#  super-linter:
-#    uses: ./.github/workflows/lint.yml
-#    with:
-#      changed_files_only: true
-#  build:
-#    uses: ./.github/workflows/build.yml
-#    with:
-#      affected_targets_only: true
-#  test:
-#    needs: [build]
-#    uses: ./.github/workflows/test.yml
-#    with:
-#      affected_targets_only: true
-#  tilt:
-#    needs: [build]
-#    uses: ./.github/workflows/tilt.yml
+name: Check PR
+
+on:
+ pull_request:
+   branches: [main]
+
+jobs:
+ buildifier:
+   uses: ./.github/workflows/buildifier.yml
+   with:
+     changed_files_only: true
+ buf:
+   uses: ./.github/workflows/buf.yml
+   with:
+     detect_breaking_changes: true
+ super-linter:
+   uses: ./.github/workflows/lint.yml
+   with:
+     changed_files_only: true
+ build:
+   uses: ./.github/workflows/build.yml
+   with:
+     affected_targets_only: true
+ test:
+   needs: [build]
+   uses: ./.github/workflows/test.yml
+   with:
+     affected_targets_only: true
+ tilt:
+   needs: [build]
+   uses: ./.github/workflows/tilt.yml

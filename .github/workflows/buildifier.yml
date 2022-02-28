@@ -6,6 +6,7 @@ on:
   workflow_call:
     inputs:
       changed_files_only:
+        description: Whether to limit checks to modified files
         type: boolean
         default: false
         required: false

@@ -3,11 +3,10 @@ name: Test
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
   workflow_call:
     inputs:
       affected_targets_only:
+        description: Whether to limit checks to targets affected by modified files
         type: boolean
         default: false
         required: false
