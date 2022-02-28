@@ -36,10 +36,10 @@ jobs:
         shell: bash
 
       - name: Lint Code
-        uses: github/super-linter/slim@6eed012d2d9731d8896242a3708f2ecca5faa98e
+        uses: github/super-linter/slim@latest
         env:
           VALIDATE_ALL_CODEBASE: ${{ !inputs.changed_files_only }}
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # TODO: Figure out why golangci-lint ignores generated protos
+          # TODO: Figure out why golangci-lint doesn't see the generated protos
           VALIDATE_GO: false
