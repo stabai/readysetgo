@@ -27,9 +27,9 @@ jobs:
           # Full git history is needed to get a proper list of changed files within `super-linter`
           fetch-depth: 0
 
-#      - name: Generate Protos
-#        run: buf generate
-#        shell: bash
+      - name: Generate Protos
+        run: buf generate
+        shell: bash
 
       - name: Lint Code
         uses: github/super-linter/slim@v4

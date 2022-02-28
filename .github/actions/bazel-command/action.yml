@@ -28,8 +28,8 @@ runs:
       with:
         separator: +
 
-#    - run: buf generate
-#      shell: bash
+    - run: buf generate
+      shell: bash
 
     - id: bazel-rdeps-query
       if: ${{ inputs.affected_targets_only}}
