@@ -28,6 +28,6 @@ jobs:
       - name: Lint Code
         run: |
           if [[ "${{ inputs.changed_files_only }}" == "true" ]]; then
-            rev_flag="--new-from-rev=HEAD"
+            rev_flag="--new-from-rev=HEAD~"
           fi
           nix-shell --run "golangci-lint run --config .github/linters/.golangci.yml $rev_flag"
