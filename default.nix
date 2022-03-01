@@ -8,6 +8,7 @@ pkgs.mkShell {
     pkgs.buf
     pkgs.docker
     pkgs.go
+    pkgs.golangci-lint
     pkgs.kubectl
     pkgs.minikube
     pkgs.tilt

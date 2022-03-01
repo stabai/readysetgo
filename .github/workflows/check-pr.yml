@@ -5,78 +5,32 @@ on:
     branches: [main]
 
 jobs:
+  buf:
+    uses: ./.github/workflows/buf.yml
+    with:
+      detect_breaking_changes: true
+
   buildifier:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
+    uses: ./.github/workflows/buildifier.yml
+    with:
+      changed_files_only: true
 
-    - name: Set up Nix
-      uses: ./.github/actions/nix-os
-
-    - name: Check build files
-      run: nix-shell --run "buildifier -mode=check -lint=warn"
-
-  buf-generate:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Nix
-      uses: ./.github/actions/nix-os
-
-    - name: Generate protos
-      run: nix-shell --run "buf generate"
+  lint:
+    uses: ./.github/workflows/lint.yml
+    with:
+      changed_files_only: true
 
   bazel-build:
-    needs: buf-generate
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Nix
-      uses: ./.github/actions/nix-os
-
-    - name: Set up Bazel
-      uses: ./.github/actions/bazel-cache
-
-    - name: Generate protos
-      run: nix-shell --run "buf generate"
-
-    - name: Build all targets
-      run: nix-shell --run "bazel build //..."
+    uses: ./.github/workflows/build.yml
+    with:
+      affected_targets_only: true
 
   bazel-test:
-    needs: bazel-build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Nix
-      uses: ./.github/actions/nix-os
-
-    - name: Set up Bazel
-      uses: ./.github/actions/bazel-cache
-
-    - name: Generate protos
-      run: nix-shell --run "buf generate"
-
-    - name: Test all targets
-      run: nix-shell --run "bazel test //..."
+    needs: [ bazel-build ]
+    uses: ./.github/workflows/test.yml
+    with:
+      affected_targets_only: true
 
   tilt-ci:
-    needs: bazel-build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Nix
-      uses: ./.github/actions/nix-os
-
-    - name: Set up Bazel
-      uses: ./.github/actions/bazel-cache
-
-    - name: Generate protos
-      run: nix-shell --run "buf generate"
-
-    - name: Run Tilt CI environment test
-      run: nix-shell --run "minikube start; tilt ci; minikube stop"
+    needs: [ bazel-build ]
+    uses: ./.github/workflows/tilt.yml
