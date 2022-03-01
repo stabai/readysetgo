@@ -36,11 +36,11 @@ jobs:
     - name: Set up Nix
       uses: ./.github/actions/nix-os
 
-    - name: Generate protos
-      run: nix-shell --run "buf generate"
-
     - name: Set up Bazel
       uses: ./.github/actions/bazel-cache
+
+    - name: Generate protos
+      run: nix-shell --run "buf generate"
 
     - name: Build all targets
       run: nix-shell --run "bazel build //..."
@@ -54,11 +54,11 @@ jobs:
     - name: Set up Nix
       uses: ./.github/actions/nix-os
 
-    - name: Generate protos
-      run: nix-shell --run "buf generate"
-
     - name: Set up Bazel
       uses: ./.github/actions/bazel-cache
+
+    - name: Generate protos
+      run: nix-shell --run "buf generate"
 
     - name: Test all targets
       run: nix-shell --run "bazel test //..."
@@ -72,11 +72,11 @@ jobs:
     - name: Set up Nix
       uses: ./.github/actions/nix-os
 
-    - name: Generate protos
-      run: nix-shell --run "buf generate"
-
     - name: Set up Bazel
       uses: ./.github/actions/bazel-cache
+
+    - name: Generate protos
+      run: nix-shell --run "buf generate"
 
     - name: Run Tilt CI environment test
       run: nix-shell --run "tilt ci"
