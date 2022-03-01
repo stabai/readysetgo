@@ -36,6 +36,9 @@ jobs:
     - name: Set up Nix
       uses: ./.github/actions/nix-os
 
+    - name: Generate protos
+      run: nix-shell --run "buf generate"
+
     - name: Set up Bazel
       uses: ./.github/actions/bazel-cache
 
@@ -51,6 +54,9 @@ jobs:
     - name: Set up Nix
       uses: ./.github/actions/nix-os
 
+    - name: Generate protos
+      run: nix-shell --run "buf generate"
+
     - name: Set up Bazel
       uses: ./.github/actions/bazel-cache
 
@@ -65,6 +71,9 @@ jobs:
 
     - name: Set up Nix
       uses: ./.github/actions/nix-os
+
+    - name: Generate protos
+      run: nix-shell --run "buf generate"
 
     - name: Set up Bazel
       uses: ./.github/actions/bazel-cache
