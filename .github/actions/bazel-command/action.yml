@@ -28,6 +28,9 @@ runs:
       with:
         separator: +
 
+    - shell: bash
+      run: nix-shell --run "buf generate"
+
     - id: bazel-rdeps-query
       if: ${{ inputs.affected_targets_only}}
       shell: bash
