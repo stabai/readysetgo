@@ -17,12 +17,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set up Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: 1.17
+      - name: Set up Nix
+        uses: ./.github/actions/nix-os
 
-      - name: Mount Bazel Cache
+      - name: Set up Bazel
         uses: ./.github/actions/bazel-cache
 
       - name: Run Bazel Tests

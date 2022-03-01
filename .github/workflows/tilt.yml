@@ -12,14 +12,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup Kubernetes Tools
-        uses: yokawasa/action-setup-kube-tools@v0.8.0
+      - name: Set up Nix
+        uses: ./.github/actions/nix-os
 
-      - name: Mount Bazel Cache
+      - name: Set up Bazel
         uses: ./.github/actions/bazel-cache
 
-      - name: Test Tilt Environment
-        run: |
-          minikube start
-          tilt ci
-          minikube stop
+      - name: Generate protos
+        run: nix-shell --run "buf generate"
+
+      - name: Test Tilt environment
+        run: nix-shell --run "minikube start; tilt ci; minikube stop"

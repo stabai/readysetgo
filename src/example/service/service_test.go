@@ -1,11 +1,12 @@
 package service_test
 
 import (
+	"os"
+	"testing"
+
 	pb "github.com/stabai/readysetgo/proto/example/service/v1"
 	impl "github.com/stabai/readysetgo/src/example/service"
 	serverTesting "github.com/stabai/readysetgo/src/server/testing"
-	"os"
-	"testing"
 )
 
 var (
