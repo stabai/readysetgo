@@ -5,15 +5,69 @@ on:
     branches: [main]
 
 jobs:
-  tests:
+  buildifier:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2.4.0
-    - uses: cachix/install-nix-action@v15
-      with:
-        nix_path: nixpkgs=channel:nixos-unstable
-    - run: nix-build
+    - uses: actions/checkout@v2
 
-    - run: nix-shell --run "buf generate"
-    - run: nix-shell --run "bazel build //..."
-    - run: nix-shell --run "bazel test //..."
+    - name: Set up Nix
+      uses: ./.github/actions/nix-os
+
+    - name: Check build files
+      run: nix-shell --run "buildifier -mode=check -lint=warn"
+
+  buf-generate:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Nix
+      uses: ./.github/actions/nix-os
+
+    - name: Generate protos
+      run: nix-shell --run "buf generate"
+
+  bazel-build:
+    needs: buf-generate
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Nix
+      uses: ./.github/actions/nix-os
+
+    - name: Set up Bazel
+      uses: ./.github/actions/bazel-cache
+
+    - name: Build all targets
+      run: nix-shell --run "bazel build //..."
+
+  bazel-test:
+    needs: bazel-build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Nix
+      uses: ./.github/actions/nix-os
+
+    - name: Set up Bazel
+      uses: ./.github/actions/bazel-cache
+
+    - name: Test all targets
+      run: nix-shell --run "bazel test //..."
+
+  tilt-ci:
+    needs: bazel-build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Nix
+      uses: ./.github/actions/nix-os
+
+    - name: Set up Bazel
+      uses: ./.github/actions/bazel-cache
+
+    - name: Run Tilt CI environment test
+      run: nix-shell --run "tilt ci"
