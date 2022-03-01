@@ -23,9 +23,6 @@ jobs:
       - name: Set up Bazel
         uses: ./.github/actions/bazel-cache
 
-      - name: Generate protos
-        run: nix-shell --run "buf generate"
-
       - name: Run Bazel Tests
         uses: ./.github/actions/bazel-command
         with:

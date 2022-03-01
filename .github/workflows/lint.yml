@@ -11,7 +11,7 @@ on:
         required: false
 
 jobs:
-  run-lint:
+  golangci-lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
