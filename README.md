@@ -27,7 +27,7 @@ the repository root to get a fully-configured shell.
 However, some of your tools (e.g. IDE) might behave better if you also install
 things locally using the directions below.
 
-### Homebrew
+### Homebrew (also recommended)
 
 If you're using macOS or Linux, you can install all required tools easily using
 the [Homebrew](https://brew.sh/) bundle defined in [`Brewfile`](Brewfile):
@@ -36,9 +36,19 @@ the [Homebrew](https://brew.sh/) bundle defined in [`Brewfile`](Brewfile):
 brew bundle install
 ```
 
-Note: Even if you're using Windows, you should probably use the
+### Windows
+
+Even if you're using Windows, you should probably use the
 [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about)
-and just run everything on a Linux terminal.
+wherever possible.
+
+Some of the tools can also be installed on your Windows instance to allow IDE
+integration. The easiest way to do this is to use
+[Chocolatey](https://chocolatey.org/):
+
+```shell
+choco install go bazelisk buildifier protoc
+```
 
 ### Manual
 
