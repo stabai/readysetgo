@@ -27,7 +27,7 @@ jobs:
         run: nix-shell --run "buf generate"
 
       - name: Lint Code
-        uses: github/super-linter/slim@a1e55fad905ce8f35ef9f46a400c7de0bc62d194
+        uses: github/super-linter/slim@main
         env:
           VALIDATE_ALL_CODEBASE: ${{ !inputs.changed_files_only }}
           DEFAULT_BRANCH: main
