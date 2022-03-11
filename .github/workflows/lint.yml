@@ -6,12 +6,13 @@ on:
   workflow_call:
     inputs:
       changed_files_only:
+        description: Whether to limit to files modified in the current change
         type: boolean
         default: false
         required: false
 
 jobs:
-  golangci-lint:
+  super-linter:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -26,8 +27,8 @@ jobs:
         run: nix-shell --run "buf generate"
 
       - name: Lint Code
-        run: |
-          if [[ "${{ inputs.changed_files_only }}" == "true" ]]; then
-            rev_flag="--new-from-rev=HEAD~"
-          fi
-          nix-shell --run "golangci-lint run --config .github/linters/.golangci.yml $rev_flag"
+        uses: github/super-linter/slim@main
+        env:
+          VALIDATE_ALL_CODEBASE: ${{ !inputs.changed_files_only }}
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
