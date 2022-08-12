@@ -6,7 +6,6 @@ def rules_docker_archives(version, sha256):
     http_archive(
         name = "io_bazel_rules_docker",
         sha256 = sha256,
-        strip_prefix = "rules_docker-%s" % version,
         urls = ["https://github.com/bazelbuild/rules_docker/releases/download/v%s/rules_docker-v%s.tar.gz" % (version, version)],
     )
 
@@ -44,7 +43,6 @@ def rules_proto_archives(version, sha256):
         sha256 = sha256,
         strip_prefix = "rules_proto-%s" % version,
         urls = [
-            "https://mirror.bazel.build/github.com/bazelbuild/rules_proto/archive/refs/tags/%s.tar.gz" % version,
             "https://github.com/bazelbuild/rules_proto/archive/refs/tags/%s.tar.gz" % version,
         ],
     )

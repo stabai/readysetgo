@@ -4,27 +4,25 @@ load("//tools/bazel/archives:rules.bzl", "gazelle_archives", "rules_docker_archi
 
 # Go & Gazelle ###########################################
 rules_go_archives(
-    sha256 = "2b1641428dff9018f9e85c0384f03ec6c10660d935b750e3fa1492a281a53b0f",
-    version = "0.29.0",
+    sha256 = "16e9fca53ed6bd4ff4ad76facc9b7b651a89db1689a2877d6fd7b82aa824e366",
+    version = "0.34.0",
 )
 
 gazelle_archives(
-    sha256 = "de69a09dc70417580aabf20a28619bb3ef60d038470c7cf8442fafcf627c21cb",
-    version = "0.24.0",
+    sha256 = "5982e5463f171da99e3bdaeff8c0f48283a7a5f396ec5282910b9e8a49c0dd7e",
+    version = "0.25.0",
 )
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 load("//tools/bazel/archives:external_go_deps.bzl", "external_go_deps")
 
-# gazelle:repository_macro tools/bazel/archives/external_go_deps.bzl%external_go_deps
-external_go_deps()
-
-external_go_deps()
-
 go_rules_dependencies()
 
-go_register_toolchains(version = "1.17.6")
+go_register_toolchains(version = "1.18.4")
+
+# gazelle:repository_macro tools/bazel/archives/external_go_deps.bzl%external_go_deps
+external_go_deps()
 
 # gazelle:repo bazel_gazelle - suppress warning because repo is initialized in macro
 gazelle_dependencies()
@@ -32,8 +30,8 @@ gazelle_dependencies()
 
 # Docker #################################################
 rules_docker_archives(
-    sha256 = "85ffff62a4c22a74dbd98d05da6cf40f497344b3dbf1e1ab0a37ab2a1a6ca014",
-    version = "0.23.0",
+    sha256 = "b1e80761a8a8243d03ebca8845e9cc1ba6c82ce7c5179ce2b295cd36f7e394bf",
+    version = "0.25.0",
 )
 
 load("@io_bazel_rules_docker//repositories:repositories.bzl", container_repositories = "repositories")

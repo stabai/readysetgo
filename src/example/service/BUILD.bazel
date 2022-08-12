@@ -36,6 +36,16 @@ go_binary(
 go_image(
     name = "example-go-grpc-image",
     embed = [":server_lib"],
+    goarch = "amd64",
+    goos = "linux",
+    importpath = "github.com/stabai/readysetgo/src/example/service",
+    visibility = ["//visibility:public"],
+)
+
+# TODO(stabai): Remove this when done using it for toolchain debugging purposes
+go_image(
+    name = "example-go-grpc-image-broken",
+    embed = [":server_lib"],
     importpath = "github.com/stabai/readysetgo/src/example/service",
     visibility = ["//visibility:public"],
 )
